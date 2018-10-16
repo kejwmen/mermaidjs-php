@@ -38,7 +38,7 @@ final class IdentifiableNode implements FlowchartNode
     public function describe(): string
     {
         if ($this->next->notEmpty()) {
-            $describedTransitions = map($this->next, function (FlowchartTransition $transition) {
+            $describedTransitions = map($this->next, function (FlowchartTransition $transition, int $i) {
                 return \sprintf('%s %s', $this->identifier, $transition->describe());
             });
 

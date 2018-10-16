@@ -49,15 +49,13 @@ final class TextNode implements FlowchartNode
         return new self($identifier, $content, Transitions::end(), $style);
     }
 
-    public function toIdentifiableNode(): IdentifiableNode
-    {
-        return IdentifiableNode::withTransitions($this->identifier, $this->next);
-    }
-
     public function describe(): string
     {
         if ($this->next->notEmpty()) {
-            $identifiableNode = $this->toIdentifiableNode();
+            // Remaining transitions should be described as identifiable node
+            $transitions = $this->next->toArray();
+            array_shift($transitions);
+            $identifiableNode = IdentifiableNode::withTransitions($this->identifier, Transitions::fromArray($transitions));
 
             $describedTransitions = map($this->next, function (FlowchartTransition $transition, int $i) use ($identifiableNode) {
                 if ($i === 0) {

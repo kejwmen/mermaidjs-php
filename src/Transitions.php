@@ -21,6 +21,14 @@ final class Transitions implements \IteratorAggregate, \Countable
         return new self(...$transitions);
     }
 
+    /**
+     * @return Transition[]
+     */
+    public function toArray(): array
+    {
+        return $this->transitions;
+    }
+
     public static function end(): self
     {
         return new self();

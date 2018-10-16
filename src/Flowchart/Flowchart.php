@@ -28,7 +28,11 @@ final class Flowchart implements Diagram
 
     public function describe(): string
     {
-        return sprintf("graph %s\n%s", $this->direction->describe(), $this->rootNodes->describe());
+        return sprintf(
+            "graph %s\n    %s",
+            $this->direction->describe(),
+            str_replace("\n", "\n    ", $this->rootNodes->describe())
+        );
     }
 
     public function root(): Nodes
