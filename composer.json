@@ -1,4 +1,7 @@
 {
+    "name": "sip/mermaidjs-php",
+    "description": "Tool to generate mermaidJS diagrams in PHP",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Sip\\MermaidJsPhp\\": "src"
