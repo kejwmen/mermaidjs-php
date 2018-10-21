@@ -5,7 +5,9 @@ namespace Sip\MermaidJsPhp\Tests\Flowchart;
 
 use Sip\MermaidJsPhp\Flowchart\FlowchartNode;
 use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
+use Sip\MermaidJsPhp\Flowchart\NodeStyle\CircleStyle;
 use Sip\MermaidJsPhp\Flowchart\TextNode;
+use Sip\MermaidJsPhp\Flowchart\TransitionStyle\OpenStyle;
 use Sip\MermaidJsPhp\Flowchart\TransitionWithoutText;
 use Sip\MermaidJsPhp\Transitions;
 
@@ -45,6 +47,11 @@ class TextNodeTest extends FlowchartNodeTest
         yield 'without transitions' => [
             $this->createNodeWithoutTransitions('foo', 'bar'),
             'foo[bar]'
+        ];
+
+        yield 'with style' => [
+            TextNode::withoutTransitions('foo', 'bar', new CircleStyle()),
+            'foo((bar))'
         ];
     }
 

@@ -6,6 +6,7 @@ namespace Sip\MermaidJsPhp\Tests\Flowchart;
 use Sip\MermaidJsPhp\Flowchart\FlowchartNode;
 use Sip\MermaidJsPhp\Flowchart\FlowchartTransition;
 use PHPUnit\Framework\TestCase;
+use Sip\MermaidJsPhp\Flowchart\TransitionStyle\TransitionStyle;
 
 abstract class FlowchartTransitionTest extends TestCase
 {
@@ -21,5 +22,9 @@ abstract class FlowchartTransitionTest extends TestCase
 
     abstract public function describingExamples(): iterable;
 
-    abstract protected function createTransition(FlowchartNode $target, ?string $text = null): FlowchartTransition;
+    abstract protected function createTransition(
+        FlowchartNode $target,
+        ?string $text = null,
+        ?TransitionStyle $style = null
+    ): FlowchartTransition;
 }

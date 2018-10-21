@@ -16,6 +16,21 @@ use Sip\MermaidJsPhp\Transitions;
 
 class NodesTest extends TestCase
 {
+    public function testCalculatesQuantityOfEmptyNodes(): void
+    {
+        $transitions = new Nodes();
+
+        $this->assertCount(0, $transitions);
+    }
+
+    public function testCalculatesQuantityOfNotEmptyNodes(): void
+    {
+        $transitions = new Nodes(
+            IdentifiableNode::withoutTransitions('foo')
+        );
+
+        $this->assertCount(1, $transitions);
+    }
 
     /**
      * @dataProvider descriptionExamples
