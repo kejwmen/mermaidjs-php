@@ -21,6 +21,17 @@ use Sip\MermaidJsPhp\Transitions;
 
 class FlowchartTest extends TestCase
 {
+    public function testContract()
+    {
+        $nodes = new Nodes(
+            IdentifiableNode::withoutTransitions('foo')
+        );
+
+        $flowchart = new Flowchart(new LeftRightDirection(), $nodes);
+
+        $this->assertSame($nodes, $flowchart->root());
+    }
+
     /**
      * @dataProvider descriptionExamples
      */
