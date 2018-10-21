@@ -3,7 +3,11 @@
 namespace Sip\MermaidJsPhp\Tests\Flowchart;
 
 use PHPUnit\Framework\TestCase;
+use Sip\MermaidJsPhp\Flowchart\Direction\BottomTopDirection;
+use Sip\MermaidJsPhp\Flowchart\Direction\Direction;
 use Sip\MermaidJsPhp\Flowchart\Direction\LeftRightDirection;
+use Sip\MermaidJsPhp\Flowchart\Direction\RightLeftDirection;
+use Sip\MermaidJsPhp\Flowchart\Direction\TopBottomDirection;
 use Sip\MermaidJsPhp\Flowchart\Flowchart;
 use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
 use Sip\MermaidJsPhp\Flowchart\NodeStyle\CircleStyle;
@@ -57,6 +61,16 @@ graph LR
     A --> C(Round Rect)
     B --> D{Rhombus}
     C --> D
+RESULT
+        ];
+
+        yield 'different direction' => [
+            new Flowchart(new TopBottomDirection(), new Nodes(
+                IdentifiableNode::withoutTransitions('FOO')
+            )),
+            <<<RESULT
+graph TB
+    FOO
 RESULT
         ];
     }

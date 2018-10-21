@@ -6,7 +6,7 @@ namespace Sip\MermaidJsPhp\Flowchart\NodeStyle;
 
 use Sip\MermaidJsPhp\Flowchart\TextNode;
 
-final class AsymetricStyle implements TextNodeStyle
+final class AsymmetricStyle implements TextNodeStyle
 {
     public function decorate(TextNode $textNode): string
     {
