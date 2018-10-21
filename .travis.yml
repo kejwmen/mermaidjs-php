@@ -12,6 +12,8 @@ cache:
   directories:
   - $HOME/.composer/cache
 
+install: travis_retry composer update --prefer-dist
+
 jobs:
   allow_failures:
   - php: nightly
