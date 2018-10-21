@@ -57,11 +57,15 @@ class TextNodeTest extends FlowchartNodeTest
 
     protected function createNodeWithTransitions(string $id, ?string $content, Transitions $next): FlowchartNode
     {
+        assert(null !== $content);
+
         return TextNode::withTransitions($id, $content, $next);
     }
 
     protected function createNodeWithoutTransitions(string $id, ?string $content): FlowchartNode
     {
+        assert(null !== $content);
+
         return TextNode::withoutTransitions($id, $content);
     }
 }

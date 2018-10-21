@@ -30,6 +30,8 @@ class TransitionWithTextTest extends FlowchartTransitionTest
         ?string $text = null,
         ?TransitionStyle $style = null
     ): FlowchartTransition {
+        assert(null !== $text);
+
         return new TransitionWithText($text, $target, $style);
     }
 
