@@ -34,6 +34,9 @@ class TextNodeTest extends FlowchartNodeTest
         $this->assertFalse($node->next()->notEmpty());
     }
 
+    /**
+     * @return mixed[]
+     */
     public function describingExamples() : iterable
     {
         yield 'with transition' => [

@@ -26,16 +26,24 @@ final class TextNode implements FlowchartNode
     /** @var TextNodeStyle */
     private $style;
 
-    private function __construct(string $identifier, string $content, Transitions $next, ?TextNodeStyle $style = null)
-    {
+    private function __construct(
+        string $identifier,
+        string $content,
+        Transitions $next,
+        ?TextNodeStyle $style = null
+    ) {
         $this->identifier = $identifier;
         $this->next       = $next;
         $this->content    = $content;
         $this->style      = $style ?? new DefaultStyle();
     }
 
-    public static function withTransitions(string $identifier, string $content, Transitions $next, ?TextNodeStyle $style = null) : self
-    {
+    public static function withTransitions(
+        string $identifier,
+        string $content,
+        Transitions $next,
+        ?TextNodeStyle $style = null
+    ) : self {
         return new self($identifier, $content, $next, $style);
     }
 
@@ -50,15 +58,20 @@ final class TextNode implements FlowchartNode
             // Remaining transitions should be described as identifiable node
             $transitions = $this->next->toArray();
             array_shift($transitions);
-            $identifiableNode = IdentifiableNode::withTransitions($this->identifier, Transitions::fromArray($transitions));
+            $identifiableNode = IdentifiableNode::withTransitions(
+                $this->identifier,
+                Transitions::fromArray($transitions)
+            );
 
-            $describedTransitions = map($this->next, function (FlowchartTransition $transition, int $i) use ($identifiableNode) {
+            $descriptor = function (FlowchartTransition $transition, int $i) use ($identifiableNode) {
                 if ($i === 0) {
                     return sprintf('%s %s', $this->style->decorate($this), $transition->describe());
                 }
 
                 return $identifiableNode->describe();
-            });
+            };
+
+            $describedTransitions = map($this->next, $descriptor);
 
             return implode("\n", $describedTransitions);
         }

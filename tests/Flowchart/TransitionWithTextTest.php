@@ -14,6 +14,9 @@ use function assert;
 
 class TransitionWithTextTest extends FlowchartTransitionTest
 {
+    /**
+     * @return mixed[]
+     */
     public function describingExamples() : iterable
     {
         yield  'simple' => [

@@ -22,9 +22,16 @@ abstract class FlowchartNodeTest extends TestCase
         $this->assertSame($expectedResult, $node->describe());
     }
 
+    /**
+     * @return mixed[]
+     */
     abstract public function describingExamples() : iterable;
 
-    abstract protected function createNodeWithTransitions(string $id, ?string $content, Transitions $next) : FlowchartNode;
+    abstract protected function createNodeWithTransitions(
+        string $id,
+        ?string $content,
+        Transitions $next
+    ) : FlowchartNode;
 
     abstract protected function createNodeWithoutTransitions(string $id, ?string $content) : FlowchartNode;
 }

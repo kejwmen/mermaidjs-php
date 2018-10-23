@@ -10,6 +10,9 @@ use Sip\MermaidJsPhp\Flowchart\TextNode;
 
 class DefaultStyleTest extends TextNodeStyleTest
 {
+    /**
+     * @return mixed[]
+     */
     public function decoratingExamples() : iterable
     {
         yield 'simple example' => [

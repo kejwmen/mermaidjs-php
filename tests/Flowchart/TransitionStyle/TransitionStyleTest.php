@@ -40,8 +40,14 @@ abstract class TransitionStyleTest extends TestCase
         $this->assertSame($expectedResult, $result);
     }
 
+    /**
+     * @return mixed[]
+     */
     abstract public function decoratingTransitionWithoutTextExamples() : iterable;
 
+    /**
+     * @return mixed[]
+     */
     abstract public function decoratingTransitionWithTextExamples() : iterable;
 
     abstract protected function createStyle() : TransitionStyle;

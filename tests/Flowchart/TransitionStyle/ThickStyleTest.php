@@ -11,6 +11,9 @@ use Sip\MermaidJsPhp\Flowchart\TransitionWithText;
 
 class ThickStyleTest extends TransitionStyleTest
 {
+    /**
+     * @return mixed[]
+     */
     public function decoratingTransitionWithoutTextExamples() : iterable
     {
         yield 'simple' => [
@@ -19,6 +22,9 @@ class ThickStyleTest extends TransitionStyleTest
         ];
     }
 
+    /**
+     * @return mixed[]
+     */
     public function decoratingTransitionWithTextExamples() : iterable
     {
         yield 'simple' => [

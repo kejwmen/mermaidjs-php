@@ -13,6 +13,9 @@ use Sip\MermaidJsPhp\Flowchart\TransitionWithoutText;
 
 class TransitionWithoutTextTest extends FlowchartTransitionTest
 {
+    /**
+     * @return mixed[]
+     */
     public function describingExamples() : iterable
     {
         yield  'simple' => [

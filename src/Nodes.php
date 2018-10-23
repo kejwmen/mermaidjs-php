@@ -28,7 +28,7 @@ final class Nodes implements IteratorAggregate, Countable, Describable
         yield from $this->nodes;
     }
 
-    public function count()
+    public function count() : int
     {
         return count($this->nodes);
     }

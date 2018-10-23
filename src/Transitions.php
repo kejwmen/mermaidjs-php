@@ -18,6 +18,9 @@ final class Transitions implements IteratorAggregate, Countable
         $this->transitions = $transitions;
     }
 
+    /**
+     * @param Transition[] $transitions
+     */
     public static function fromArray(array $transitions) : self
     {
         return new self(...$transitions);
@@ -49,7 +52,7 @@ final class Transitions implements IteratorAggregate, Countable
         yield from $this->transitions;
     }
 
-    public function count()
+    public function count() : int
     {
         return count($this->transitions);
     }

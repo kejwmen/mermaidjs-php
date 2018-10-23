@@ -21,6 +21,9 @@ abstract class FlowchartTransitionTest extends TestCase
         $this->assertSame($expectedResult, $transition->describe());
     }
 
+    /**
+     * @return mixed[]
+     */
     abstract public function describingExamples() : iterable;
 
     abstract protected function createTransition(

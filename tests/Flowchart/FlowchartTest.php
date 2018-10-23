@@ -39,6 +39,9 @@ class FlowchartTest extends TestCase
         $this->assertSame($expectedResult, $flowchart->describe());
     }
 
+    /**
+     * @return mixed[]
+     */
     public function descriptionExamples() : iterable
     {
         yield 'demo example' => [

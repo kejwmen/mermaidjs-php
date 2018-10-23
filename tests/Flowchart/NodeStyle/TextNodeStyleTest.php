@@ -28,6 +28,9 @@ abstract class TextNodeStyleTest extends TestCase
         $this->assertSame($expectedResult, $result);
     }
 
+    /**
+     * @return mixed[]
+     */
     abstract public function decoratingExamples() : iterable;
 
     abstract protected function createStyle() : TextNodeStyle;
