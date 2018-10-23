@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Flowchart;
@@ -10,7 +11,7 @@ use Sip\MermaidJsPhp\Transitions;
 
 class IdentifiableNodeTest extends FlowchartNodeTest
 {
-    public function testContractWithTransitions(): void
+    public function testContractWithTransitions() : void
     {
         $transitions = Transitions::end();
 
@@ -21,7 +22,7 @@ class IdentifiableNodeTest extends FlowchartNodeTest
         $this->assertSame($transitions, $node->next());
     }
 
-    public function testContractWithoutTransitions(): void
+    public function testContractWithoutTransitions() : void
     {
         $node = $this->createNodeWithoutTransitions('foo', null);
 
@@ -30,29 +31,28 @@ class IdentifiableNodeTest extends FlowchartNodeTest
         $this->assertFalse($node->next()->notEmpty());
     }
 
-    public function describingExamples(): iterable
+    public function describingExamples() : iterable
     {
         yield 'with transition' => [
-            $this->createNodeWithTransitions('foo', null, Transitions::fromArray([
-                new TransitionWithoutText(
-                    IdentifiableNode::withoutTransitions('bar')
-                )
+            $this->createNodeWithTransitions('foo', null, Transitions::fromArray([new TransitionWithoutText(
+                IdentifiableNode::withoutTransitions('bar')
+            ),
             ])),
-            'foo --> bar'
+            'foo --> bar',
         ];
 
         yield 'without transitions' => [
             $this->createNodeWithoutTransitions('foo', null),
-            'foo'
+            'foo',
         ];
     }
 
-    protected function createNodeWithTransitions(string $id, ?string $content, Transitions $next): FlowchartNode
+    protected function createNodeWithTransitions(string $id, ?string $content, Transitions $next) : FlowchartNode
     {
         return IdentifiableNode::withTransitions($id, $next);
     }
 
-    protected function createNodeWithoutTransitions(string $id, ?string $content): FlowchartNode
+    protected function createNodeWithoutTransitions(string $id, ?string $content) : FlowchartNode
     {
         return IdentifiableNode::withoutTransitions($id);
     }

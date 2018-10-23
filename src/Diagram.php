@@ -6,5 +6,5 @@ namespace Sip\MermaidJsPhp;
 
 interface Diagram extends Describable
 {
-    public function root(): Nodes;
+    public function root() : Nodes;
 }

@@ -8,6 +8,6 @@ use Sip\MermaidJsPhp\Node;
 
 interface FlowchartNode extends Node
 {
-    public function getId(): string;
-    public function getContent(): ?string;
+    public function getId() : string;
+    public function getContent() : ?string;
 }

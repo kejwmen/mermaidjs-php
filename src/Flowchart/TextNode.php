@@ -4,52 +4,47 @@ declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Flowchart;
 
-use function Functional\map;
 use Sip\MermaidJsPhp\Flowchart\NodeStyle\DefaultStyle;
 use Sip\MermaidJsPhp\Flowchart\NodeStyle\TextNodeStyle;
 use Sip\MermaidJsPhp\Transitions;
+use function array_shift;
+use function Functional\map;
+use function implode;
+use function sprintf;
 
 final class TextNode implements FlowchartNode
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $identifier;
 
-    /**
-     * @var Transitions
-     */
+    /** @var Transitions */
     private $next;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $content;
 
-    /**
-     * @var TextNodeStyle
-     */
+    /** @var TextNodeStyle */
     private $style;
 
     private function __construct(string $identifier, string $content, Transitions $next, ?TextNodeStyle $style = null)
     {
         $this->identifier = $identifier;
-        $this->next = $next;
-        $this->content = $content;
-        $this->style = $style ?? new DefaultStyle();
+        $this->next       = $next;
+        $this->content    = $content;
+        $this->style      = $style ?? new DefaultStyle();
     }
 
-    public static function withTransitions(string $identifier, string $content, Transitions $next, ?TextNodeStyle $style = null): self
+    public static function withTransitions(string $identifier, string $content, Transitions $next, ?TextNodeStyle $style = null) : self
     {
         return new self($identifier, $content, $next, $style);
     }
 
-    public static function withoutTransitions(string $identifier, string $content, ?TextNodeStyle $style = null): self
+    public static function withoutTransitions(string $identifier, string $content, ?TextNodeStyle $style = null) : self
     {
         return new self($identifier, $content, Transitions::end(), $style);
     }
 
-    public function describe(): string
+    public function describe() : string
     {
         if ($this->next->notEmpty()) {
             // Remaining transitions should be described as identifiable node
@@ -59,7 +54,7 @@ final class TextNode implements FlowchartNode
 
             $describedTransitions = map($this->next, function (FlowchartTransition $transition, int $i) use ($identifiableNode) {
                 if ($i === 0) {
-                    return \sprintf('%s %s', $this->style->decorate($this), $transition->describe());
+                    return sprintf('%s %s', $this->style->decorate($this), $transition->describe());
                 }
 
                 return $identifiableNode->describe();
@@ -71,17 +66,17 @@ final class TextNode implements FlowchartNode
         return $this->style->decorate($this);
     }
 
-    public function getId(): string
+    public function getId() : string
     {
         return $this->identifier;
     }
 
-    public function getContent(): string
+    public function getContent() : string
     {
         return $this->content;
     }
 
-    public function next(): Transitions
+    public function next() : Transitions
     {
         return $this->next;
     }

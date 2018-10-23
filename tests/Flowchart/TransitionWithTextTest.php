@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Flowchart;
@@ -9,19 +10,20 @@ use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
 use Sip\MermaidJsPhp\Flowchart\TransitionStyle\OpenStyle;
 use Sip\MermaidJsPhp\Flowchart\TransitionStyle\TransitionStyle;
 use Sip\MermaidJsPhp\Flowchart\TransitionWithText;
+use function assert;
 
 class TransitionWithTextTest extends FlowchartTransitionTest
 {
-    public function describingExamples(): iterable
+    public function describingExamples() : iterable
     {
         yield  'simple' => [
             $this->createTransition(IdentifiableNode::withoutTransitions('bar'), 'foo'),
-            '-- foo --> bar'
+            '-- foo --> bar',
         ];
 
         yield 'with style' => [
             $this->createTransition(IdentifiableNode::withoutTransitions('bar'), 'foo', new OpenStyle()),
-            '-- foo --- bar'
+            '-- foo --- bar',
         ];
     }
 
@@ -29,13 +31,13 @@ class TransitionWithTextTest extends FlowchartTransitionTest
         FlowchartNode $target,
         ?string $text = null,
         ?TransitionStyle $style = null
-    ): FlowchartTransition {
-        assert(null !== $text);
+    ) : FlowchartTransition {
+        assert($text !== null);
 
         return new TransitionWithText($text, $target, $style);
     }
 
-    public function testContract(): void
+    public function testContract() : void
     {
         $target = IdentifiableNode::withoutTransitions('foo');
 

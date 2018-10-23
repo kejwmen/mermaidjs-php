@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Flowchart\Direction;
@@ -8,7 +9,7 @@ use Sip\MermaidJsPhp\Flowchart\Direction\BottomTopDirection;
 
 class BottomTopDirectionTest extends TestCase
 {
-    public function testDescribe()
+    public function testDescribe() : void
     {
         $direction = new BottomTopDirection();
 

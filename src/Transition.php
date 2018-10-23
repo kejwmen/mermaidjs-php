@@ -6,5 +6,5 @@ namespace Sip\MermaidJsPhp;
 
 interface Transition extends Describable
 {
-    public function target(): Node;
+    public function target() : Node;
 }

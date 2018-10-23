@@ -7,17 +7,15 @@ namespace Sip\MermaidJsPhp\Flowchart;
 use Sip\MermaidJsPhp\Diagram;
 use Sip\MermaidJsPhp\Flowchart\Direction\Direction;
 use Sip\MermaidJsPhp\Nodes;
+use function sprintf;
+use function str_replace;
 
 final class Flowchart implements Diagram
 {
-    /**
-     * @var Direction
-     */
+    /** @var Direction */
     private $direction;
 
-    /**
-     * @var Nodes
-     */
+    /** @var Nodes */
     private $rootNodes;
 
     public function __construct(Direction $direction, Nodes $rootNodes)
@@ -26,7 +24,7 @@ final class Flowchart implements Diagram
         $this->rootNodes = $rootNodes;
     }
 
-    public function describe(): string
+    public function describe() : string
     {
         return sprintf(
             "graph %s\n    %s",
@@ -35,7 +33,7 @@ final class Flowchart implements Diagram
         );
     }
 
-    public function root(): Nodes
+    public function root() : Nodes
     {
         return $this->rootNodes;
     }
