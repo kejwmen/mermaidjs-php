@@ -10,12 +10,10 @@ use Sip\MermaidJsPhp\Flowchart\TextNode;
 
 abstract class TextNodeStyleTest extends TestCase
 {
-    /**
-     * @var TextNodeStyle
-     */
+    /** @var TextNodeStyle */
     private $style;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->style = $this->createStyle();
     }
@@ -23,18 +21,21 @@ abstract class TextNodeStyleTest extends TestCase
     /**
      * @dataProvider decoratingExamples
      */
-    public function testDecoratesExampleNodes(TextNode $node, string $expectedResult)
+    public function testDecoratesExampleNodes(TextNode $node, string $expectedResult) : void
     {
         $result = $this->style->decorate($node);
 
         $this->assertSame($expectedResult, $result);
     }
 
-    abstract public function decoratingExamples(): iterable;
+    /**
+     * @return mixed[]
+     */
+    abstract public function decoratingExamples() : iterable;
 
-    abstract protected function createStyle(): TextNodeStyle;
+    abstract protected function createStyle() : TextNodeStyle;
 
-    protected function createTextNode(string $identifier, string $context): TextNode
+    protected function createTextNode(string $identifier, string $context) : TextNode
     {
         return TextNode::withoutTransitions($identifier, $context, $this->style);
     }

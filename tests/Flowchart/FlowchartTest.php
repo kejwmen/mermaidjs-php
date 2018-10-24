@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sip\MermaidJsPhp\Tests\Flowchart;
 
 use PHPUnit\Framework\TestCase;
-use Sip\MermaidJsPhp\Flowchart\Direction\BottomTopDirection;
-use Sip\MermaidJsPhp\Flowchart\Direction\Direction;
 use Sip\MermaidJsPhp\Flowchart\Direction\LeftRightDirection;
-use Sip\MermaidJsPhp\Flowchart\Direction\RightLeftDirection;
 use Sip\MermaidJsPhp\Flowchart\Direction\TopBottomDirection;
 use Sip\MermaidJsPhp\Flowchart\Flowchart;
 use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
@@ -21,7 +20,7 @@ use Sip\MermaidJsPhp\Transitions;
 
 class FlowchartTest extends TestCase
 {
-    public function testContract()
+    public function testContract() : void
     {
         $nodes = new Nodes(
             IdentifiableNode::withoutTransitions('foo')
@@ -35,37 +34,37 @@ class FlowchartTest extends TestCase
     /**
      * @dataProvider descriptionExamples
      */
-    public function testDescribesExampleFlowcharts(Flowchart $flowchart, string $expectedResult)
+    public function testDescribesExampleFlowcharts(Flowchart $flowchart, string $expectedResult) : void
     {
         $this->assertSame($expectedResult, $flowchart->describe());
     }
 
-    public function descriptionExamples(): iterable
+    /**
+     * @return mixed[]
+     */
+    public function descriptionExamples() : iterable
     {
         yield 'demo example' => [
             new Flowchart(new LeftRightDirection(), new Nodes(
-                TextNode::withTransitions('A', 'Square Rect', Transitions::fromArray([
-                    new TransitionWithText(
-                        'Link text',
-                        TextNode::withoutTransitions('B', 'Circle', new CircleStyle())
-                    )
+                TextNode::withTransitions('A', 'Square Rect', Transitions::fromArray([new TransitionWithText(
+                    'Link text',
+                    TextNode::withoutTransitions('B', 'Circle', new CircleStyle())
+                ),
                 ])),
-                IdentifiableNode::withTransitions('A', Transitions::fromArray([
-                    new TransitionWithoutText(
-                        TextNode::withoutTransitions('C', 'Round Rect', new RoundEdgesStyle())
-                    )
+                IdentifiableNode::withTransitions('A', Transitions::fromArray([new TransitionWithoutText(
+                    TextNode::withoutTransitions('C', 'Round Rect', new RoundEdgesStyle())
+                ),
                 ])),
-                IdentifiableNode::withTransitions('B', Transitions::fromArray([
-                    new TransitionWithoutText(
-                        TextNode::withoutTransitions('D', 'Rhombus', new RhombusStyle())
-                    )
+                IdentifiableNode::withTransitions('B', Transitions::fromArray([new TransitionWithoutText(
+                    TextNode::withoutTransitions('D', 'Rhombus', new RhombusStyle())
+                ),
                 ])),
-                IdentifiableNode::withTransitions('C', Transitions::fromArray([
-                    new TransitionWithoutText(
-                        IdentifiableNode::withoutTransitions('D')
-                    )
+                IdentifiableNode::withTransitions('C', Transitions::fromArray([new TransitionWithoutText(
+                    IdentifiableNode::withoutTransitions('D')
+                ),
                 ]))
             )),
+            //phpcs:disable SlevomatCodingStandard.Arrays.TrailingArrayComma
             <<<RESULT
 graph LR
     A[Square Rect] -- Link text --> B((Circle))
@@ -73,16 +72,19 @@ graph LR
     B --> D{Rhombus}
     C --> D
 RESULT
+            //phpcs:enable
         ];
 
         yield 'different direction' => [
             new Flowchart(new TopBottomDirection(), new Nodes(
                 IdentifiableNode::withoutTransitions('FOO')
             )),
+            //phpcs:disable SlevomatCodingStandard.Arrays.TrailingArrayComma
             <<<RESULT
 graph TB
     FOO
 RESULT
+            //phpcs:enable
         ];
     }
 }

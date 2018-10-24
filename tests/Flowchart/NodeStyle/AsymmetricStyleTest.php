@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Flowchart\NodeStyle;
@@ -9,15 +10,18 @@ use Sip\MermaidJsPhp\Flowchart\TextNode;
 
 class AsymmetricStyleTest extends TextNodeStyleTest
 {
-    public function decoratingExamples(): iterable
+    /**
+     * @return mixed[]
+     */
+    public function decoratingExamples() : iterable
     {
         yield 'simple example' => [
             TextNode::withoutTransitions('Foo', 'bar'),
-            'Foo>bar]'
+            'Foo>bar]',
         ];
     }
 
-    protected function createStyle(): TextNodeStyle
+    protected function createStyle() : TextNodeStyle
     {
         return new AsymmetricStyle();
     }

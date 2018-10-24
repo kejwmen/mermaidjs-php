@@ -8,5 +8,5 @@ use Sip\MermaidJsPhp\Transition;
 
 interface FlowchartTransition extends Transition
 {
-    public function text(): ?string;
+    public function text() : ?string;
 }

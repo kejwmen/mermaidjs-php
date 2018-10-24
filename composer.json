@@ -17,6 +17,12 @@
         "lstrojny/functional-php": "^1.8"
     },
     "require-dev": {
+        "doctrine/coding-standard": "^5.0",
         "phpunit/phpunit": "^7.4"
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan -l max src tests",
+        "cs": "vendor/bin/phpcs --standard=Doctrine src tests",
+        "cs-fix": "vendor/bin/phpcbf --standard=Doctrine src tests"
     }
 }

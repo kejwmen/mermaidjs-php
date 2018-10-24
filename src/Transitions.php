@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp;
 
-final class Transitions implements \IteratorAggregate, \Countable
+use Countable;
+use IteratorAggregate;
+use function count;
+
+final class Transitions implements IteratorAggregate, Countable
 {
-    /**
-     * @var Transition[]
-     */
+    /** @var Transition[] */
     private $transitions;
 
     private function __construct(Transition ...$transitions)
@@ -16,7 +18,10 @@ final class Transitions implements \IteratorAggregate, \Countable
         $this->transitions = $transitions;
     }
 
-    public static function fromArray(array $transitions): self
+    /**
+     * @param Transition[] $transitions
+     */
+    public static function fromArray(array $transitions) : self
     {
         return new self(...$transitions);
     }
@@ -24,19 +29,19 @@ final class Transitions implements \IteratorAggregate, \Countable
     /**
      * @return Transition[]
      */
-    public function toArray(): array
+    public function toArray() : array
     {
         return $this->transitions;
     }
 
-    public static function end(): self
+    public static function end() : self
     {
         return new self();
     }
 
-    public function notEmpty(): bool
+    public function notEmpty() : bool
     {
-        return !empty($this->transitions);
+        return ! empty($this->transitions);
     }
 
     /**
@@ -47,8 +52,8 @@ final class Transitions implements \IteratorAggregate, \Countable
         yield from $this->transitions;
     }
 
-    public function count()
+    public function count() : int
     {
-        return \count($this->transitions);
+        return count($this->transitions);
     }
 }

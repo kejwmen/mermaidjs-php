@@ -6,7 +6,7 @@ namespace Sip\MermaidJsPhp\Flowchart\Direction;
 
 final class TopBottomDirection implements Direction
 {
-    public function describe(): string
+    public function describe() : string
     {
         return 'TB';
     }

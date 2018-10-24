@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp;
 
-final class Nodes implements \IteratorAggregate, \Countable, Describable
+use Countable;
+use IteratorAggregate;
+use function array_map;
+use function count;
+use function implode;
+
+final class Nodes implements IteratorAggregate, Countable, Describable
 {
-    /**
-     * @var Node[]
-     */
+    /** @var Node[] */
     private $nodes;
 
     public function __construct(Node ...$nodes)
@@ -24,14 +28,14 @@ final class Nodes implements \IteratorAggregate, \Countable, Describable
         yield from $this->nodes;
     }
 
-    public function count()
+    public function count() : int
     {
-        return \count($this->nodes);
+        return count($this->nodes);
     }
 
-    public function describe(): string
+    public function describe() : string
     {
-        return implode("\n", array_map(function (Node $node) {
+        return implode("\n", array_map(static function (Node $node) {
             return $node->describe();
         }, $this->nodes));
     }

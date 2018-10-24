@@ -6,5 +6,5 @@ namespace Sip\MermaidJsPhp;
 
 interface Describable
 {
-    public function describe(): string;
+    public function describe() : string;
 }

@@ -1,22 +1,21 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Flowchart\TransitionStyle;
 
+use PHPUnit\Framework\TestCase;
 use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
 use Sip\MermaidJsPhp\Flowchart\TransitionStyle\TransitionStyle;
-use PHPUnit\Framework\TestCase;
 use Sip\MermaidJsPhp\Flowchart\TransitionWithoutText;
 use Sip\MermaidJsPhp\Flowchart\TransitionWithText;
 
 abstract class TransitionStyleTest extends TestCase
 {
-    /**
-     * @var TransitionStyle
-     */
+    /** @var TransitionStyle */
     protected $style;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->style = $this->createStyle();
     }
@@ -24,7 +23,7 @@ abstract class TransitionStyleTest extends TestCase
     /**
      * @dataProvider decoratingTransitionWithoutTextExamples
      */
-    public function testDecoratesTransitionWithoutText(TransitionWithoutText $transition, string $expectedResult)
+    public function testDecoratesTransitionWithoutText(TransitionWithoutText $transition, string $expectedResult) : void
     {
         $result = $this->style->decorate($transition);
 
@@ -34,20 +33,26 @@ abstract class TransitionStyleTest extends TestCase
     /**
      * @dataProvider decoratingTransitionWithTextExamples
      */
-    public function testDecoratesTransitionWithText(TransitionWithText $transition, string $expectedResult)
+    public function testDecoratesTransitionWithText(TransitionWithText $transition, string $expectedResult) : void
     {
         $result = $this->style->decorate($transition);
 
         $this->assertSame($expectedResult, $result);
     }
 
-    abstract public function decoratingTransitionWithoutTextExamples(): iterable;
+    /**
+     * @return mixed[]
+     */
+    abstract public function decoratingTransitionWithoutTextExamples() : iterable;
 
-    abstract public function decoratingTransitionWithTextExamples(): iterable;
+    /**
+     * @return mixed[]
+     */
+    abstract public function decoratingTransitionWithTextExamples() : iterable;
 
-    abstract protected function createStyle(): TransitionStyle;
+    abstract protected function createStyle() : TransitionStyle;
 
-    protected function createExampleTargetNode(): IdentifiableNode
+    protected function createExampleTargetNode() : IdentifiableNode
     {
         return IdentifiableNode::withoutTransitions('Foo');
     }

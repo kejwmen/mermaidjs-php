@@ -8,5 +8,5 @@ use Sip\MermaidJsPhp\Flowchart\FlowchartTransition;
 
 interface TransitionStyle
 {
-    public function decorate(FlowchartTransition $transition): string;
+    public function decorate(FlowchartTransition $transition) : string;
 }

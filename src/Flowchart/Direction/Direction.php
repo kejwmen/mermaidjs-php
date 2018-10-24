@@ -8,5 +8,4 @@ use Sip\MermaidJsPhp\Describable;
 
 interface Direction extends Describable
 {
-
 }

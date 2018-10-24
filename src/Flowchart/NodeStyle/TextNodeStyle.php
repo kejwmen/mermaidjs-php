@@ -8,5 +8,5 @@ use Sip\MermaidJsPhp\Flowchart\TextNode;
 
 interface TextNodeStyle
 {
-    public function decorate(TextNode $textNode): string;
+    public function decorate(TextNode $textNode) : string;
 }
