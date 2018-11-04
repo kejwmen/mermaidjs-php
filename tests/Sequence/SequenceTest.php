@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
 use Sip\MermaidJsPhp\Flowchart\TransitionStyle\ArrowStyle;
 use Sip\MermaidJsPhp\Nodes;
+use Sip\MermaidJsPhp\Sequence\LoopNode;
 use Sip\MermaidJsPhp\Sequence\MessageArrowStyle\DottedLine;
 use Sip\MermaidJsPhp\Sequence\MessageArrowStyle\SolidLineWithArrow;
 use Sip\MermaidJsPhp\Sequence\MessageNode;
@@ -50,7 +51,9 @@ class SequenceTest extends TestCase
                         'John',
                         'Hello John, how are you?'
                     ),
-                    // TODO: Implement loop node
+                    new LoopNode('Healthcheck', new Nodes(
+                        new MessageNode('John', 'John', 'Fight against hypochondria')
+                    )),
                     // TODO: Implement note node
                     new MessageNode(
                         'John',
