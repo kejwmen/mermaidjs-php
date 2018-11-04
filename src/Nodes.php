@@ -35,8 +35,14 @@ final class Nodes implements IteratorAggregate, Countable, Describable
 
     public function describe() : string
     {
-        return implode("\n", array_map(static function (Node $node) {
-            return $node->describe();
-        }, $this->nodes));
+        return implode(
+            "\n",
+            array_map(
+                static function (Node $node) {
+                    return $node->describe();
+                },
+                $this->nodes
+            )
+        );
     }
 }

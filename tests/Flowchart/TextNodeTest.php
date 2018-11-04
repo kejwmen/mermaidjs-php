@@ -20,8 +20,8 @@ class TextNodeTest extends FlowchartNodeTest
 
         $node = $this->createNodeWithTransitions('foo', 'bar', $transitions);
 
-        $this->assertSame('foo', $node->getId());
-        $this->assertSame('bar', $node->getContent());
+        $this->assertSame('foo', $node->id());
+        $this->assertSame('bar', $node->content());
         $this->assertSame($transitions, $node->next());
     }
 
@@ -29,8 +29,8 @@ class TextNodeTest extends FlowchartNodeTest
     {
         $node = $this->createNodeWithoutTransitions('foo', 'bar');
 
-        $this->assertSame('foo', $node->getId());
-        $this->assertSame('bar', $node->getContent());
+        $this->assertSame('foo', $node->id());
+        $this->assertSame('bar', $node->content());
         $this->assertFalse($node->next()->notEmpty());
     }
 
@@ -40,10 +40,16 @@ class TextNodeTest extends FlowchartNodeTest
     public function describingExamples() : iterable
     {
         yield 'with transition' => [
-            $this->createNodeWithTransitions('foo', 'bar', Transitions::fromArray([new TransitionWithoutText(
-                IdentifiableNode::withoutTransitions('baz')
+            $this->createNodeWithTransitions(
+                'foo',
+                'bar',
+                Transitions::fromArray(
+                    [new TransitionWithoutText(
+                        IdentifiableNode::withoutTransitions('baz')
+                    ),
+                    ]
+                )
             ),
-            ])),
             'foo[bar] --> baz',
         ];
 

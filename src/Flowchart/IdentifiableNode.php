@@ -36,9 +36,12 @@ final class IdentifiableNode implements FlowchartNode
     public function describe() : string
     {
         if ($this->next->notEmpty()) {
-            $describedTransitions = map($this->next, function (FlowchartTransition $transition, int $i) {
-                return sprintf('%s %s', $this->identifier, $transition->describe());
-            });
+            $describedTransitions = map(
+                $this->next,
+                function (FlowchartTransition $transition, int $i) {
+                    return sprintf('%s %s', $this->identifier, $transition->describe());
+                }
+            );
 
             return implode("\n", $describedTransitions);
         }
@@ -46,12 +49,12 @@ final class IdentifiableNode implements FlowchartNode
         return $this->identifier;
     }
 
-    public function getId() : string
+    public function id() : string
     {
         return $this->identifier;
     }
 
-    public function getContent() : ?string
+    public function content() : ?string
     {
         return null;
     }

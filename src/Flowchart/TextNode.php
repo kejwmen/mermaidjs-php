@@ -79,12 +79,12 @@ final class TextNode implements FlowchartNode
         return $this->style->decorate($this);
     }
 
-    public function getId() : string
+    public function id() : string
     {
         return $this->identifier;
     }
 
-    public function getContent() : string
+    public function content() : string
     {
         return $this->content;
     }

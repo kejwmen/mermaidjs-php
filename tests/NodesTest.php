@@ -114,11 +114,18 @@ DIAGRAM
         ];
 
         yield 'identifiable node with multiple transitions' => [
-            new Nodes(IdentifiableNode::withTransitions('FOO', Transitions::fromArray([
-                new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR')),
-                new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAZ')),
-                new TransitionWithoutText(IdentifiableNode::withoutTransitions('ZAZ')),
-            ]))),
+            new Nodes(
+                IdentifiableNode::withTransitions(
+                    'FOO',
+                    Transitions::fromArray(
+                        [
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR')),
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAZ')),
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('ZAZ')),
+                        ]
+                    )
+                )
+            ),
             //phpcs:disable SlevomatCodingStandard.Arrays.TrailingArrayComma
             <<<DIAGRAM
 FOO --> BAR
@@ -129,11 +136,18 @@ DIAGRAM
         ];
 
         yield 'identifiable node with multiple transitions using different styles' => [
-            new Nodes(IdentifiableNode::withTransitions('FOO', Transitions::fromArray([
-                new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR'), new DottedStyle()),
-                new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAZ'), new OpenStyle()),
-                new TransitionWithoutText(IdentifiableNode::withoutTransitions('ZAZ')),
-            ]))),
+            new Nodes(
+                IdentifiableNode::withTransitions(
+                    'FOO',
+                    Transitions::fromArray(
+                        [
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR'), new DottedStyle()),
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAZ'), new OpenStyle()),
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('ZAZ')),
+                        ]
+                    )
+                )
+            ),
             //phpcs:disable SlevomatCodingStandard.Arrays.TrailingArrayComma
             <<<DIAGRAM
 FOO -.-> BAR
@@ -147,19 +161,23 @@ DIAGRAM
             new Nodes(
                 IdentifiableNode::withTransitions(
                     'FOO',
-                    Transitions::fromArray([
-                        new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR'), new DottedStyle()),
-                        new TransitionWithoutText(TextNode::withoutTransitions('BAZ', 'lorem'), new OpenStyle()),
-                        new TransitionWithoutText(IdentifiableNode::withoutTransitions('ZAZ')),
-                    ])
+                    Transitions::fromArray(
+                        [
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR'), new DottedStyle()),
+                            new TransitionWithoutText(TextNode::withoutTransitions('BAZ', 'lorem'), new OpenStyle()),
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('ZAZ')),
+                        ]
+                    )
                 ),
                 TextNode::withTransitions(
                     'woof',
                     'bork',
-                    Transitions::fromArray([
-                        new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR'), new ArrowStyle()),
-                        new TransitionWithoutText(IdentifiableNode::withoutTransitions('bazinga'), new OpenStyle()),
-                    ]),
+                    Transitions::fromArray(
+                        [
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('BAR'), new ArrowStyle()),
+                            new TransitionWithoutText(IdentifiableNode::withoutTransitions('bazinga'), new OpenStyle()),
+                        ]
+                    ),
                     new RhombusStyle()
                 )
             ),
