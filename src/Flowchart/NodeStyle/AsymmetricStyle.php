@@ -13,8 +13,8 @@ final class AsymmetricStyle implements TextNodeStyle
     {
         return sprintf(
             '%s>%s]',
-            $textNode->getId(),
-            $textNode->getContent()
+            $textNode->id(),
+            $textNode->content()
         );
     }
 }

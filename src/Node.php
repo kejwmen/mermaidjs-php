@@ -6,5 +6,4 @@ namespace Sip\MermaidJsPhp;
 
 interface Node extends Describable
 {
-    public function next() : Transitions;
 }

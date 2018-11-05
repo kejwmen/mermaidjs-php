@@ -45,25 +45,49 @@ class FlowchartTest extends TestCase
     public function descriptionExamples() : iterable
     {
         yield 'demo example' => [
-            new Flowchart(new LeftRightDirection(), new Nodes(
-                TextNode::withTransitions('A', 'Square Rect', Transitions::fromArray([new TransitionWithText(
-                    'Link text',
-                    TextNode::withoutTransitions('B', 'Circle', new CircleStyle())
-                ),
-                ])),
-                IdentifiableNode::withTransitions('A', Transitions::fromArray([new TransitionWithoutText(
-                    TextNode::withoutTransitions('C', 'Round Rect', new RoundEdgesStyle())
-                ),
-                ])),
-                IdentifiableNode::withTransitions('B', Transitions::fromArray([new TransitionWithoutText(
-                    TextNode::withoutTransitions('D', 'Rhombus', new RhombusStyle())
-                ),
-                ])),
-                IdentifiableNode::withTransitions('C', Transitions::fromArray([new TransitionWithoutText(
-                    IdentifiableNode::withoutTransitions('D')
-                ),
-                ]))
-            )),
+            new Flowchart(
+                new LeftRightDirection(),
+                new Nodes(
+                    TextNode::withTransitions(
+                        'A',
+                        'Square Rect',
+                        Transitions::fromArray(
+                            [new TransitionWithText(
+                                'Link text',
+                                TextNode::withoutTransitions('B', 'Circle', new CircleStyle())
+                            ),
+                            ]
+                        )
+                    ),
+                    IdentifiableNode::withTransitions(
+                        'A',
+                        Transitions::fromArray(
+                            [new TransitionWithoutText(
+                                TextNode::withoutTransitions('C', 'Round Rect', new RoundEdgesStyle())
+                            ),
+                            ]
+                        )
+                    ),
+                    IdentifiableNode::withTransitions(
+                        'B',
+                        Transitions::fromArray(
+                            [new TransitionWithoutText(
+                                TextNode::withoutTransitions('D', 'Rhombus', new RhombusStyle())
+                            ),
+                            ]
+                        )
+                    ),
+                    IdentifiableNode::withTransitions(
+                        'C',
+                        Transitions::fromArray(
+                            [new TransitionWithoutText(
+                                IdentifiableNode::withoutTransitions('D')
+                            ),
+                            ]
+                        )
+                    )
+                )
+            ),
             //phpcs:disable SlevomatCodingStandard.Arrays.TrailingArrayComma
             <<<RESULT
 graph LR
@@ -76,9 +100,12 @@ RESULT
         ];
 
         yield 'different direction' => [
-            new Flowchart(new TopBottomDirection(), new Nodes(
-                IdentifiableNode::withoutTransitions('FOO')
-            )),
+            new Flowchart(
+                new TopBottomDirection(),
+                new Nodes(
+                    IdentifiableNode::withoutTransitions('FOO')
+                )
+            ),
             //phpcs:disable SlevomatCodingStandard.Arrays.TrailingArrayComma
             <<<RESULT
 graph TB
