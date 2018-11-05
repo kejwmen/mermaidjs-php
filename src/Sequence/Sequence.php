@@ -6,6 +6,8 @@ namespace Sip\MermaidJsPhp\Sequence;
 
 use Sip\MermaidJsPhp\Diagram;
 use Sip\MermaidJsPhp\Nodes;
+use function sprintf;
+use function str_replace;
 
 final class Sequence implements Diagram
 {

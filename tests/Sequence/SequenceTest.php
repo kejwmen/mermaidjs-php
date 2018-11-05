@@ -6,12 +6,11 @@ namespace Sip\MermaidJsPhp\Tests\Sequence;
 
 use PHPUnit\Framework\TestCase;
 use Sip\MermaidJsPhp\Flowchart\IdentifiableNode;
-use Sip\MermaidJsPhp\Flowchart\TransitionStyle\ArrowStyle;
 use Sip\MermaidJsPhp\Nodes;
 use Sip\MermaidJsPhp\Sequence\LoopNode;
 use Sip\MermaidJsPhp\Sequence\MessageArrowStyle\DottedLine;
-use Sip\MermaidJsPhp\Sequence\MessageArrowStyle\SolidLineWithArrow;
 use Sip\MermaidJsPhp\Sequence\MessageNode;
+use Sip\MermaidJsPhp\Sequence\NoteNode;
 use Sip\MermaidJsPhp\Sequence\ParticipantNode;
 use Sip\MermaidJsPhp\Sequence\Sequence;
 
@@ -54,12 +53,12 @@ class SequenceTest extends TestCase
                     new LoopNode('Healthcheck', new Nodes(
                         new MessageNode('John', 'John', 'Fight against hypochondria')
                     )),
-                    // TODO: Implement note node
+                    NoteNode::right('John', 'Rational thoughts <br/>prevail...'),
                     new MessageNode(
                         'John',
                         'Alice',
                         'Great!',
-                        new SolidLineWithArrow()
+                        new DottedLine()
                     ),
                     new MessageNode(
                         'John',

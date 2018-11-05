@@ -4,24 +4,30 @@ declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Sequence;
 
+use PHPUnit\Framework\TestCase;
 use Sip\MermaidJsPhp\Sequence\AliasedParticipantNode;
-use Sip\MermaidJsPhp\Sequence\SequenceNode;
 
-class AliasedParticipantNodeTest extends AbstractParticipantNodeTest
+class AliasedParticipantNodeTest extends TestCase
 {
+    /**
+     * @dataProvider describingExamples
+     */
+    public function testDescribesExamples(string $name, string $alias, string $expectedResult) : void
+    {
+        $node = new AliasedParticipantNode($name, $alias);
+
+        $this->assertSame($expectedResult, $node->describe());
+    }
+
     /**
      * @return mixed[]
      */
     public function describingExamples() : iterable
     {
         yield 'simple' => [
-            new AliasedParticipantNode('Foo', 'Bar'),
+            'Foo',
+            'Bar',
             'participant Foo AS Bar',
         ];
-    }
-
-    protected function createNode(string $name, ?string $alias) : SequenceNode
-    {
-        return new AliasedParticipantNode($name, $alias);
     }
 }

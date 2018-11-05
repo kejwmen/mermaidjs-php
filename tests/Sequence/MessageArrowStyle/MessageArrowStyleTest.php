@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Sip\MermaidJsPhp\Tests\Sequence\MessageArrowStyle;
 
 use PHPUnit\Framework\TestCase;
-use Sip\MermaidJsPhp\Flowchart\NodeStyle\TextNodeStyle;
-use Sip\MermaidJsPhp\Flowchart\TextNode;
 use Sip\MermaidJsPhp\Sequence\MessageArrowStyle\MessageArrowStyle;
 
 abstract class MessageArrowStyleTest extends TestCase

@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace Sip\MermaidJsPhp\Sequence;
 
 use Sip\MermaidJsPhp\Nodes;
+use function sprintf;
 
 final class LoopNode implements SequenceNode
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $label;
 
-    /**
-     * @var Nodes
-     */
+    /** @var Nodes */
     private $nodes;
 
     public function __construct(string $label, Nodes $nodes)
@@ -24,7 +21,7 @@ final class LoopNode implements SequenceNode
         $this->nodes = $nodes;
     }
 
-    public function describe(): string
+    public function describe() : string
     {
         return sprintf(
             "loop %s\n    %s\nend",

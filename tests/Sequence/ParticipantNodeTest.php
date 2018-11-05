@@ -4,24 +4,29 @@ declare(strict_types=1);
 
 namespace Sip\MermaidJsPhp\Tests\Sequence;
 
+use PHPUnit\Framework\TestCase;
 use Sip\MermaidJsPhp\Sequence\ParticipantNode;
-use Sip\MermaidJsPhp\Sequence\SequenceNode;
 
-final class ParticipantNodeTest extends AbstractParticipantNodeTest
+final class ParticipantNodeTest extends TestCase
 {
+    /**
+     * @dataProvider describingExamples
+     */
+    public function testDescribesExamples(string $name, string $expectedResult) : void
+    {
+        $node = new ParticipantNode($name);
+
+        $this->assertSame($expectedResult, $node->describe());
+    }
+
     /**
      * @return mixed[]
      */
     public function describingExamples() : iterable
     {
         yield 'simple' => [
-            new ParticipantNode('Foo'),
+            'Foo',
             'participant Foo',
         ];
-    }
-
-    protected function createNode(string $name, ?string $alias) : SequenceNode
-    {
-        return new ParticipantNode($name);
     }
 }
