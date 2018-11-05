@@ -12,8 +12,12 @@ class SpanningNoteNodeTest extends TestCase
     /**
      * @dataProvider describingExamples
      */
-    public function testDescribe(string $firstSubject, string $secondSubject, string $content, string $expectedResult) : void
-    {
+    public function testDescribe(
+        string $firstSubject,
+        string $secondSubject,
+        string $content,
+        string $expectedResult
+    ) : void {
         $node = new SpanningNoteNode($firstSubject, $secondSubject, $content);
 
         $result = $node->describe();

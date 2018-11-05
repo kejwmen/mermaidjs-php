@@ -28,14 +28,14 @@ class NoteNodeTest extends TestCase
     public function describingExamples() : iterable
     {
         yield 'left' => [
-            function (): NoteNode {
+            static function () : NoteNode {
                 return NoteNode::left('Foo', 'Bar');
             },
             'Note left of Foo: Bar',
         ];
 
         yield 'right' => [
-            function (): NoteNode {
+            static function () : NoteNode {
                 return NoteNode::right('Foo', 'Bar');
             },
             'Note right of Foo: Bar',
